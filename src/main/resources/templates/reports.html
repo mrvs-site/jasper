@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Curso Jasper Report</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <h1>Bem vindo ao curso!!!</h1>
+    <H2>Relatório 01</H2>
+    <a th:href="@{/relatorio/pdf/jr1(code='01', acao='v')}">Abrir</a>
+    <a th:href="@{/relatorio/pdf/jr1(code='01', acao='d')}">Download</a>
+
+<hr/>
+
+<a href="@{/relatorio/pdf/jr1(code='01',acao='v')}"></a>
+<div>
+    <h2>Relatório 09</h2>
+    <form th:action="@{/relatorio/pdf/jr9/09}" method="get">
+       <select id="nivel" name="nivel">
+            <option value="">Selecione Nível</option>
+            <option  th:each="nivel : ${niveis}"  th:text="${nivel}">Selecione</option>
+        </select>
+        <select id="uf" name="uf">
+            <option value="">Selecione UF</option>
+            <option th:each="uf : ${uf}" th:text="${uf}">Selecione</option>
+        </select>
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+    <hr/>
+<div>
+    <H2>Relatório 10</H2>
+    <a th:href="@{/relatorio/pdf/jr1(code='10', acao='v')}">Abrir</a>
+    <a th:href="@{/relatorio/pdf/jr1(code='10', acao='d')}">Download</a>
+</div>
+    <hr/>
+<div>
+      <H2>Relatório 19</H2>
+      <form th:action="@{/buscar/funcionarios}" method="get">
+           <input type="text" id="nome" name="nome" placeholder="nome do funcionário">
+          <button type="submit">Buscar</button>
+      </form>
+       <br/>
+       <table>
+           <thead>
+                <th>Nome do Funcionário</th>
+                <th>Emitir Certificado</th>
+           </thead>
+               <tr th:each="f : ${funcionarios}">
+                   <td th:text="${f.get(1)}"></td>
+                   <td>
+                      <a th:href="@{/relatorio/pdf/jr19/19(id=${f.get(0)})}">PDF</a>
+                      <a th:href="@{/relatorio/html/jr19/19(id=${f.get(0)})}">HTML</a>
+                   </td>
+               </tr>
+       </table>
+</div>
+
+</body>
+</html>
